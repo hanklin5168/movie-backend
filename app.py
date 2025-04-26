@@ -1,3 +1,29 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI()
+
+# 加上CORS設定
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # ✅ 允許所有來源
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+@app.get("/")
+def read_root():
+    return {"message": "Movie Search API running!"}
+
+@app.get("/movies")
+def get_movies():
+    # 你的電影資料
+    return [
+        {"title": "電影1", "release_date": "2025-04-26", "info": "描述...", "poster_path": "/abcd.jpg"},
+        {"title": "電影2", "release_date": "2025-04-28", "info": "描述...", "poster_path": "/efgh.jpg"},
+    ]
+
 # backend/app.py
 from fastapi import FastAPI
 import requests

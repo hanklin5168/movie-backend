@@ -3,6 +3,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import requests
 from typing import List
+from dotenv import load_dotenv
+import os
 
 # ⚡️ 1. 創建app
 app = FastAPI()
@@ -17,7 +19,9 @@ app.add_middleware(
 )
 
 # ⚡️ 3. API邏輯
-API_KEY = "dd805c7ad21f99a62cbcc7a446b16be5"  # 你的TMDB金鑰
+load_dotenv()  # 讀取.env檔案
+
+API_KEY = os.getenv("TMDB_API_KEY")  # 你的TMDB金鑰
 
 @app.get("/")
 def root():

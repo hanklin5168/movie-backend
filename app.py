@@ -39,9 +39,12 @@ def get_movies():
         for movie in data.get("results", []):
             movies.append({
                 "title": movie.get("title", ""),
+                "original_title": movie.get("original_title", ""),
                 "release_date": movie.get("release_date", ""),
-                "info": movie.get("overview", ""),
-                "poster_path": movie.get("poster_path")
+                "overview": movie.get("overview", ""),
+                "poster_path": movie.get("poster_path"),
+                "vote_average": movie.get("vote_average", 0),
+                "genre_ids": movie.get("genre_ids", [])
             })
 
         return movies
